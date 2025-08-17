@@ -1,0 +1,31 @@
+name: Deploy to Minikube
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: 'Docker image tag (e.g., v1.0)'
+        required: true
+        default: 'latest'
+
+jobs:
+  deploy-to-minikube:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Minikube
+        uses: medyagh/setup-minikube@master
+
+      - name: Build and push image to Minikube
+        run: |
+          eval $(minikube -p minikube docker-env)
+          docker build -t demo:${{ github.event.inputs.image_tag }} .
+          docker images
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
+          kubectl get pods
