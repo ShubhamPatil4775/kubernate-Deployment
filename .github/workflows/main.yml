@@ -50,5 +50,5 @@ jobs:
           
       - name: Deployment k8s
         run: |
-          kubectl apply -f deployment.yml
-          kubectl apply -f service.yml
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
