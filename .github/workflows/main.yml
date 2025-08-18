@@ -3,7 +3,7 @@ on: workflow_dispatch
 env:
   DOCKER_USERNAME: ${{vars.DOCKER_NAME}}
   DOCKER_PASSWORD: ${{secrets.PASSWORD}}
-  DOCKER_IMAGE: demo
+  DOCKER_IMAGE: shubham4775/demo
 
 jobs:
   build-and-deploy:
