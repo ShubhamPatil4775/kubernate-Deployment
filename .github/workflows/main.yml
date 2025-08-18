@@ -2,7 +2,7 @@ name: Deploy to minikube
 on: workflow_dispatch
 env:
   DOCKER_USERNAME: ${{vars.DOCKER_NAME}}
-  DOCKER_PASSWORD: ${{secrets.NEW_DOCKER_PASSWORD}}
+  DOCKER_PASSWORD: ${{secrets.PASSWORD}}
   DOCKER_IMAGE: demo
 
 jobs:
